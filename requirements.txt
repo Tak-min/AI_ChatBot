@@ -9,3 +9,7 @@ aiohttp==3.9.3
 asyncio==3.4.3
 SpeechRecognition==3.10.0
 pyaudio==0.2.13
+psutil==5.9.0
+SQLAlchemy==2.0.0
+pytest==7.4.0
+pytest-asyncio==0.21.0

@@ -1,0 +1,150 @@
+{
+  "discord": {
+    "use_privileged_intents": true,
+    "bot_count": 1, 
+    "target_user_id": "YOUR_TARGET_USER_ID", 
+    "voice_channel_id": "YOUR_VOICE_CHANNEL_ID", 
+    "text_channel_id": "YOUR_TEXT_CHANNEL_ID" 
+  },  "gemini_settings": {
+    "model": "gemini-1.5-flash", 
+    "max_tokens": 200,
+    "temperature": 0.75,
+    "enable_context_memory": true,
+    "conversation_context_limit": 15, 
+    "user_specific_memory_limit": 50 
+  },"tts_settings": {
+    "engine": "voicevox",
+    "base_url": "http://localhost:50021",
+    "timeout": 10,
+    "voicevox": {
+      "engine_url": "http://localhost:50021",
+      "speed_scale": 1.1,
+      "output_sampling_rate": 24000,
+      "output_stereo": false,
+      "pre_phoneme_length": 0.1,
+      "post_phoneme_length": 0.1,
+      "enable_interrogative_upspeak": true
+    },
+    "other_tts_placeholder": {
+      "api_url": "http://localhost:5002/api/tts",
+      "speaker_id_param_name": "speaker_id", 
+      "text_param_name": "text"
+    }
+  },  "bot_activity": {
+    "activity_rate_range": [0.2, 0.7], 
+    "random_activity_interval_seconds": [300, 1800], 
+    "enable_offline_mode": true,
+    "enable_mood_tracking": true,
+    "enable_time_patterns": true,
+    "bot_rotation": {
+      "enabled": true,
+      "rotation_interval_minutes": 60,
+      "min_online_bots": 2,
+      "max_online_bots": 3
+    },
+    "response_cooldown_seconds": { 
+      "voice": [20, 60], 
+      "text": [300, 900] 
+    },
+    "random_text_chat": {
+      "enabled": true,
+      "check_interval_seconds": 15,
+      "cooldown_seconds": [300, 900],
+      "activity_rate_multiplier": 0.5
+    },
+    "voice_channel_auto_leave_minutes": 3, 
+    "autonomous_join_interval_minutes": 30,
+    "performance_monitoring": {
+      "enable": true,
+      "cpu_high_load_threshold": 80.0, 
+      "memory_high_load_threshold": 80.0,
+      "cpu_critical_load_threshold": 95.0,
+      "memory_critical_load_threshold": 95.0,
+      "scale_down_factor": 0.7
+    },
+    "mood_and_energy": {
+      "enable_mood_learning": true,
+      "energy_decay_per_hour": 2.0,
+      "social_interaction_energy_gain": [1, 3],
+      "negative_interaction_energy_loss": [3, 7],
+      "daily_energy_reset_range": [20, 30],
+      "mood_change_probability_per_2hours": 0.1
+    },
+    "time_patterns": {
+      "morning_activity_multiplier": 0.8,
+      "afternoon_activity_multiplier": 1.0,
+      "evening_activity_multiplier": 0.9,
+      "night_activity_multiplier": 0.3,
+      "preferred_active_hours": [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+      "sleep_schedule": {
+        "bedtime": 23,
+        "wakeup": 7
+      }
+    },
+    "activity_modes": {
+      "normal_multiplier": 1.0,
+      "energetic_multiplier": 1.3,
+      "calm_multiplier": 0.8,
+      "sleepy_multiplier": 0.4,
+      "social_multiplier": 1.5,
+      "focused_multiplier": 0.9
+    }
+  },
+  "voice_recognition": {
+    "enable": true,
+    "pause_threshold": 0.8,
+    "energy_threshold": 300,
+    "dynamic_energy_threshold": true
+  },
+  "database": {
+    "path": "memory/bot_memory.db" 
+  },
+  "gemini_common": {
+    "default_model_name": "gemini-1.5-flash-latest",
+    "max_output_tokens_default": 500,
+    "temperature_default": 0.7,
+    "top_p_default": 0.95,
+    "top_k_default": 40,
+    "safety_settings_default": [
+      {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
+      {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
+      {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
+      {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_MEDIUM_AND_ABOVE"}
+    ],
+    "prompt_base_path": "config/prompts"
+  },
+  "tts_engines": {
+    "voicevox": {
+      "base_url": "http://127.0.0.1:50021",
+      "default_speaker_id": 1,
+      "timeout": 10
+    }
+  },
+  "characters": [
+    {
+      "id": "zundamon",
+      "name": "ずんだもん",
+      "enabled": true,      
+      "discord_bot_token_env_var": "ZUNDAMON_TOKEN",
+      "gemini_api_key_env_var": "GEMINI_API_KEY_ZUNDAMON",
+      "gemini_settings": {
+        "system_prompt_template_file": "system_prompt_template.md",
+        "character_personality_file": "zundamon_prompt.md",
+        "user_persona_file": "user_persona_default.md",
+        "temperature": 0.7,
+        "top_p": 1.0,
+        "top_k": 40,
+        "max_output_tokens": 300
+      },
+      "tts_engine": "voicevox",
+      "tts_config": {
+        "speaker_id": 3
+      },
+      "initial_greeting": "ボクはずんだもん！なのだ。よろしくなのだ！",
+      "enable_long_term_memory_summary": true,
+      "enable_vision_processing": false,
+      "allowed_guilds": [],
+      "admin_user_ids": []
+    }
+  ]
+}

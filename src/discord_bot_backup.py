@@ -570,8 +570,7 @@ class CharacterBot(OptimizedBot, commands.Bot):
                     
                 # テキストチャンネルにメッセージを送信
                 text_channel = self.get_channel(TEXT_CHANNEL_ID)
-                if text_channel:
-                    embed = discord.Embed(
+                if text_channel:                    embed = discord.Embed(
                         description=response_text,
                         color=int(self.character['color'], 16)
                     )
@@ -608,8 +607,7 @@ class CharacterBot(OptimizedBot, commands.Bot):
                                 discord_user_id=user_id,
                                 username="システム",
                                 display_name="システム"
-                            )                        
-                        else:
+                            )                        else:
                             # 従来のクライアントの場合
                             text = await self.gemini_client.generate_response(
                                 character_info=self.character,
@@ -632,7 +630,7 @@ class CharacterBot(OptimizedBot, commands.Bot):
                 await self.audio_queue.put(audio_path)
         except Exception as e:
             logger.error(f"応答生成中にエラーが発生しました: {e}")
-    async def join_voice_channel(self, channel):
+      async def join_voice_channel(self, channel):
         """指定されたボイスチャンネルに接続する"""
         try:
             # 既に同じチャンネルに接続している場合は何もしない
@@ -973,7 +971,7 @@ def run_bots():
             await asyncio.sleep(300)  # その後は5分ごとにチェック
     
     loop.create_task(autonomous_voice_join_task())
-    try:
+      try:
         loop.run_forever()
     except KeyboardInterrupt:
         logger.info("Botをシャットダウンしています...")
